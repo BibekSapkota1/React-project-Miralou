@@ -11,6 +11,23 @@ import FooterImage from "../assets/icons/images/Footer.svg"
 import { ReactComponent as StarIcon } from "../assets/icons/star.svg"
 import { CategoryCard } from './categoryCard'
 
+
+const Product = () =>{
+  return <div className='w-60 mb-5'>
+    <div>
+      <img src={SerumImage} />
+    </div>
+    <div className='flex mt-2'>
+      <button> <StarIcon /> </button>
+      <p className='ml-1 text-sm mt-1'>1 review</p>
+    </div>
+    <div>
+      <p className='text-base font-bold'>Anti-Ance Serum</p>
+      <p className='text-base font-bold'>$ 4.99</p>
+    </div>
+  </div>
+}
+
 export default function Home() {
 
   const [data, setData] =useState()
@@ -21,7 +38,7 @@ export default function Home() {
     }).then((data) => {
       setData(data.data)
     })
-    .catch(() => {
+    .catch((e) => {
       setData({
         categories: [],
         new_arrivals: [],
@@ -49,21 +66,21 @@ export default function Home() {
     },
   ]
 
-  const product = [
-    <div className='w-60 mb-5'>
-      <div>
-        <img src={SerumImage} />
-      </div>
-      <div className='flex mt-2'>
-        <button> <StarIcon /> </button>
-        <p className='ml-1 text-sm mt-1'>1 review</p>
-      </div>
-      <div>
-        <p className='text-base font-bold'>Anti-Ance Serum</p>
-        <p className='text-base font-bold'>$ 4.99</p>
-      </div>
-    </div>
-  ]
+  // const product = [
+  //   <div className='w-60 mb-5'>
+  //     <div>
+  //       <img src={SerumImage} />
+  //     </div>
+  //     <div className='flex mt-2'>
+  //       <button> <StarIcon /> </button>
+  //       <p className='ml-1 text-sm mt-1'>1 review</p>
+  //     </div>
+  //     <div>
+  //       <p className='text-base font-bold'>Anti-Ance Serum</p>
+  //       <p className='text-base font-bold'>$ 4.99</p>
+  //     </div>
+  //   </div>
+  // ]
 
   const About = [
     <div className='w-4/12'>
@@ -111,14 +128,17 @@ export default function Home() {
               in non arcu. Praesent porta auctor odio a suscipit. Quisque sagittis suscipit ultricies.</p>
           </div>
           <div className=' flex flex-wrap  justify-between  mt-5'>
+              {data?.new_arrivals.map((product) => {
+              return <Product product={product} />
+            })}
+            {/* {product}
             {product}
             {product}
             {product}
             {product}
             {product}
             {product}
-            {product}
-            {product}
+            {product} */}
           </div>
           <div className='mt-10 mx-auto flex items-center justify-center'>
             <button className='rounded-md border-2 p-2 px-12 border-black'>
